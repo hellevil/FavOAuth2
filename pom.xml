@@ -13,6 +13,11 @@
       <mysql.version>5.1.34</mysql.version>
       <mybatis.version>3.2.7</mybatis.version>
       
+      <!-- 文件拷贝时的编码 -->  
+      <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>  
+      <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>  
+      <!-- 编译时的编码 -->  
+      <maven.compiler.encoding>UTF-8</maven.compiler.encoding> 
   </properties>
   <dependencies>
     <dependency>
@@ -157,8 +162,29 @@
 		<artifactId>httpclient</artifactId>
 		<version>4.3.6</version>
 	</dependency>
+	
+	<dependency>
+	  <groupId>net.sf.ezmorph</groupId>
+	  <artifactId>ezmorph</artifactId>
+	  <version>1.0.6</version>
+	</dependency>
+	
   </dependencies>
+  
   <build>
     <finalName>FAVAUTH</finalName>
+    
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.5</version>
+        <configuration>
+          <source>1.7</source>
+          <target>1.7</target>
+          <encoding>UTF-8</encoding>
+        </configuration>
+      </plugin>
+    </plugins>
   </build>
 </project>

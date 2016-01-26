@@ -40,24 +40,27 @@ public class ApplySiteController {
 	}
 	
 	@RequestMapping("approvewebsite")
-	public ModelAndView approveWebSite(String webId, String approveState){
-		ModelAndView mav = new ModelAndView();
+	@ResponseBody
+	public FavWebApp approveWebSite(String webId, String approveState){
+//		ModelAndView mav = new ModelAndView();
+		//此不操作仅仅是在录入站点的基础上给status变成1，无其他操作
 		FavWebApp favWebApp = favWebAppService.findOne(Long.valueOf(webId));
 		if(favWebApp!=null){
 			favWebApp.setWebState(approveState);
 			favWebAppService.updateFavWebApp(favWebApp);
 		}
-		return mav;
+		return favWebApp;
 	}
 
 	
 	@RequestMapping("/addwebsite")
 	@ResponseBody
-	public String addWebSite(FavWebApp favWebApp){
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("webapply/web_application");
-		favWebAppService.createFavWebApp(favWebApp);
-		return "";
+	public FavWebApp addWebSite(FavWebApp favWebApp){
+//		ModelAndView mav = new ModelAndView();
+//		mav.setViewName("webapply/web_application");
+		//经验证，应用申请的功能并没有调用oauth的任何内容
+		FavWebApp webapp = favWebAppService.createFavWebApp(favWebApp);
+		return webapp;
 	}
 	
 	
